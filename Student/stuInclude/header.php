@@ -28,7 +28,7 @@ if (isset($userLogEmail)) {
     <title>Profile</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap_thang.min.css">
+    <link rel="stylesheet" href="./css/bootstrap_thang.min.css">
     <!-- Font AweSome CSS -->
     <link rel="stylesheet" href="../css/all.min.css">
     <!-- Google Font -->
