@@ -185,7 +185,10 @@
                 </form> -->
                 <div style="margin-left: 910px;"></div>
                 <a href="timKiem.php" class="nav-btn" ><i class="fas fa-search"></i></a>
-                <a href="#" class="nav-btn" ><i class="fas fa-shopping-cart"></i></a>
+                <!-- Giỏ hàng -->
+                <a href="giaoDienGioHang.php" class="nav-btn" ><i class="fas fa-shopping-cart"></i></a>
+
+
                 <a href="#" id="account-btn" class="nav-btn"><i class="fas fa-user" onclick="toggleMenu()"></i></a>                       
                 <div class="sub-menu-wrap" id="subMenu">
                     <div class="sub-menu">
