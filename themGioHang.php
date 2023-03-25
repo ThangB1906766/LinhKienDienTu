@@ -16,18 +16,38 @@ include('./mainInclude/header.php');
         $sp_ten = $_POST['sp_ten'];
         $sp_hinhAnh = $_POST['sp_hinhAnh'];
         $sp_gia = $_POST['sp_gia'];
-        $soLuong = 1;
 
-        // Tìm và so sánh một sản phẩm trong giỏ hàng
+        if(isset($_POST['sp_soLuong']) && ($_POST['sp_soLuong'] >0)){
+            $soLuong = $_POST['sp_soLuong'];
+        }else{
+            $soLuong = 1;
+        }
 
-        
+        // $soLuong = $_POST[soLuong];
+        $i=0;
+        $fg=0;
+        // Tìm và so sánh một sản phẩm trong giỏ hàng ( Kiểm tra có mới tìm)
+        if(isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0) ){
+            foreach ($_SESSION['cart'] as $sanpham) {
+                if($sanpham[0] == $sp_id){
+                    // Cập nhật số lượng
+                    $soLuong += $sanpham[4];
+                    $fg = 1;
+                    // Cập nhật số lượng mới dô giỏ hàng
+                    $_SESSION['cart'][$i][4] = $soLuong; // Cập nhật cột thứ 4(Số lượng) trong tại vị trí $i trong giỏ hàng
+                    break;
+                }
+                $i++;
+            }
+        }
 
-        // Tạo mảng
-        $sanpham = array($sp_id, $sp_ten, $sp_hinhAnh, $sp_gia, $soLuong);
-
-        // Đưa mảng vừa tạo vào session
-        array_push($_SESSION['cart'], $sanpham);
-
+        // Khi số lượng ban đầu không đổi => thêm mới sp vào giỏ hàng
+        if($fg==0){
+            // Tạo mảng
+            $sanpham = array($sp_id, $sp_ten, $sp_hinhAnh, $sp_gia, $soLuong);
+            // Đưa mảng vừa tạo vào session
+            array_push($_SESSION['cart'], $sanpham);
+        }
         // Chuyển trang
         header('location: giaoDienGioHang.php');     
     }

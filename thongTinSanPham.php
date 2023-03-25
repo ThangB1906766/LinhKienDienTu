@@ -49,7 +49,8 @@
                                   <div>
                                           <label id="text-des" for="cars">Số lượng: </label>
                                           <span style="position: relative;margin-left: 12px;">
-                                          <input type="number" max="100" min="1" size="3" value="1">
+
+                                          <input type="number" name="sp_soLuong" max="100" min="1" size="3" value="1">
                                           
                                          
                                           <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng" name="addtocart">

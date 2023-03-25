@@ -1,10 +1,33 @@
-<!-- Start Including Header -->
 <?php
-include('./dbconnection.php');
-include('./mainInclude/header.php');
+     SESSION_start();
+     ob_start();
+     include('./donHang.php');
+    //  include('./hoaDon.php');
+
+     
+     if((isset($_POST['thanhToan'])) && (isset($_POST['thanhToan']))){
+        // Lấy dữ liệu khi lick thanh toán
+        $tongDonHang = $_POST['tongdonhang'];
+        $hoTen = $_POST['hoten'];
+        $diaChi = $_POST['diachi'];
+        $email = $_POST['email'];
+        $sdt = $_POST['sodienthoai'];
+        $pttt = $_POST['pttt'];
+        // Tạo mã đơn hàng
+        $maDonHang = "LKDT".rand(0,999999);
+        // Tạo đơn hàng (insert thông tin vào bản tlb_order)
+        $idDonHang=taoDonHang($maDonHang, $tongDonHang, $pttt, $hoTen, $diaChi, $email, $sdt); // donHang.php
+
+        // Tạo giỏ hàng (insert thông tin vào bản tlb_cart)
+        if(isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0) ){
+            foreach ($_SESSION['cart'] as $sanpham){
+                addtocart($idDonHang, $sanpham[0], $sanpham[1], $sanpham[2], $sanpham[3], $sanpham[4]);
+            }
+        }
+        
+     }
+     
 ?>
-
-
     <?php
     // session_start(); 
     // ob_start();
@@ -13,7 +36,9 @@ include('./mainInclude/header.php');
         // echo '<br> Có tiếp tục <a href="thongTinSanPham.php"> đặt hàng </a>';
     ?>
         <!-- End Including Header -->
-        <h1 style="text-align: center;">Giỏ Hàng</h1>
+
+        <!-- <h1 style="text-align: center;">Giỏ Hàng</h1> -->
+        <!-- <h3>ID Đơn hàng: <?=$idDonHang?></h3> -->
         <table class="table">
             <thead class="thead-light">
                 <tr>
@@ -23,7 +48,7 @@ include('./mainInclude/header.php');
                     <th scope="col">Đơn giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Thành tiền</th>
-                    <th scope="col">Xóa</th>
+                    
 
                 </tr>
             </thead>
@@ -42,7 +67,7 @@ include('./mainInclude/header.php');
                             <td>' . $sanpham[3] . '</td>
                             <td>' . $sanpham[4] . '</td>
                             <td>' . $thanhTien . '</td>
-                            <td style="text-align:center"><a href="xoaGioHang.php?id=' . $i . '">Xóa</a></td>
+                           
                         </tr>
                     ';
                     $i++;
@@ -55,13 +80,10 @@ include('./mainInclude/header.php');
                 </tr>
 
             </tbody>
-        </table>
-        <p><a href="index.php">Tiếp tục đặt hàng?</a></p>
-        <p><a href="xoaGioHang.php">Xóa giỏ hàng?</a></p>
-
+       
 
     <h1 style="text-align: center;">Thông tin đặt hàng</h1>
-    <form action="thanhtoan.php" method="POST">
+        <h3>ID Đơn hàng: <?=$idDonHang?></h3>
         <input type="hidden" name="tongdonhang" value="<?=$tongTien?>">
         <table class="datHang">
             <tr>
@@ -76,25 +98,13 @@ include('./mainInclude/header.php');
             <tr>
             <td><input type="text" name="sodienthoai" placeholder="Nhập số điện thoại"></td>
             </tr>
-            <tr>
-                <td>Phương thức thanh toán <br>
-                    <input type="radio" name="pttt" value="1"> Thanh toán khi nhận hàng <br>
-                    <input type="radio" name="pttt" value="2"> Thanh toán khi giao hàng <br>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Thanh toán" name="thanhToan"></td>
-            </tr>
+        
         </table>
-    </form>
+    
 
     <?php
     } else {
         echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
     }
     ?>
-<!-- Start Including Footer -->
-<?php
-include('./mainInclude/footer.php')
-?>
-<!-- End Including Footer -->
+<?php  ob_flush(); ?>
