@@ -18,11 +18,14 @@
         // Tạo đơn hàng (insert thông tin vào bản tlb_order)
         $idDonHang=taoDonHang($maDonHang, $tongDonHang, $pttt, $hoTen, $diaChi, $email, $sdt); // donHang.php
 
+        $_SESSION['idDonHang'] = $idDonHang;
         // Tạo giỏ hàng (insert thông tin vào bản tlb_cart)
         if(isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0) ){
             foreach ($_SESSION['cart'] as $sanpham){
                 addtocart($idDonHang, $sanpham[0], $sanpham[1], $sanpham[2], $sanpham[3], $sanpham[4]);
             }
+            // Xóa giỏ hàng sau khi đặt
+            // unset($_SESSION['cart']);
         }
         
      }
@@ -31,77 +34,106 @@
     <?php
     // session_start(); 
     // ob_start();
-    if (isset($_SESSION['cart'])) {
-        // echo var_dump($_SESSION['cart']);
-        // echo '<br> Có tiếp tục <a href="thongTinSanPham.php"> đặt hàng </a>';
-    ?>
-        <!-- End Including Header -->
-
-        <!-- <h1 style="text-align: center;">Giỏ Hàng</h1> -->
-        <!-- <h3>ID Đơn hàng: <?=$idDonHang?></h3> -->
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Hình</th>
-                    <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Đơn giá</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Thành tiền</th>
-                    
-
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $tongTien = 0;
-                $i = 0;
-                foreach ($_SESSION['cart'] as $sanpham) {
-                    $thanhTien = $sanpham[3] * $sanpham[4];
-                    $tongTien += $thanhTien;
-                    echo '
+    if(isset($_SESSION['idDonHang']) && ($_SESSION['idDonHang'] > 0)){
+    $getShowCart = getShowCart($idDonHang);
+    if (isset($getShowCart) && (count($getShowCart) > 0)) {
+            ?>
+                <table class="table">
+                    <thead class="thead-light">
                         <tr>
-                            <td>' . ($i + 1) . '</td>
-                            <td><img src="' . $sanpham[2] . '" width="100"></td>
-                            <td>' . $sanpham[1] . '</td>
-                            <td>' . $sanpham[3] . '</td>
-                            <td>' . $sanpham[4] . '</td>
-                            <td>' . $thanhTien . '</td>
-                           
+                            <th scope="col">STT</th>
+                            <th scope="col">Hình</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Đơn giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                            
+
                         </tr>
-                    ';
-                    $i++;
-                }
-                ?>
-                <tr>
-                    <td colspan="5">Tổng đơn hàng</td>
-                    <td style="background-color: #CCC;"><?php echo $tongTien ?></td>
-                    <td></td>
-                </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                    // $sanpham = array($sp_id, $sp_ten, $sp_hinhAnh, $sp_gia, $soLuong);
+                        $tongTien = 0;
+                        $i = 0;
+                        foreach ($getShowCart as $sanpham) {
+                            $thanhTien = $sanpham['soLuong'] * $sanpham['donGia'];
+                            $tongTien += $thanhTien;
+                            echo '
+                                <tr>
+                                    <td>' . ($i + 1) . '</td>
+                                    <td><img src="' . $sanpham['img'] . '" width="100"></td>
+                                    <td>' . $sanpham['tenSanPham'] . '</td>
+                                    <td>' . $sanpham['donGia'] . '</td>
+                                    <td>' . $sanpham['soLuong'] . '</td>
+                                    <td>' . $thanhTien . '</td>
+                                
+                                </tr>
+                            ';
+                            $i++;
+                        }
+                        ?>
+                        <tr>
+                            <td colspan="5">Tổng đơn hàng</td>
+                            <td style="background-color: #CCC;"><?php echo $tongTien ?></td>
+                            <td></td>
+                        </tr>
 
-            </tbody>
-       
+                    </tbody>
+    <?php
+            }else{
+                echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
+            }
+    ?>    
 
-    <h1 style="text-align: center;">Thông tin đặt hàng</h1>
-        <h3>ID Đơn hàng: <?=$idDonHang?></h3>
-        <input type="hidden" name="tongdonhang" value="<?=$tongTien?>">
-        <table class="datHang">
-            <tr>
-                <td><input type="text" name="hoten" placeholder="Nhập họ tên"></td>
-            </tr>
-            <tr>
-            <td><input type="text" name="diachi" placeholder="Nhập địa chỉ"></td>
-            </tr>
-            <tr>
-            <td><input type="text" name="email" placeholder="Nhập email"></td>
-            </tr>
-            <tr>
-            <td><input type="text" name="sodienthoai" placeholder="Nhập số điện thoại"></td>
-            </tr>
-        
-        </table>
-    
+        <?php
+         if(isset($_SESSION['idDonHang']) && ($_SESSION['idDonHang'] > 0)){
+            $orderInfor = getOderInfor($_SESSION['idDonHang']);
+            if(count($orderInfor) > 0){
+        ?>  
+                <h1 style="text-align: center;">Thông tin đặt hàng</h1>
+               
+                    <table class="datHang">
+                        <tr>
+                            <h2>Mã đơn hàng: <?=$orderInfor[0]['madh']?> </h2>
+                        </tr>
+                        <tr>
+                            <td>Tên người nhận: <?=$orderInfor[0]['name']?> </td>
+                        </tr>
+                        <tr>
+                        <td>Địa chỉ người nhận: <?=$orderInfor[0]['address']?> </td>
+                        </tr>
+                        <tr>
+                        <td>Email người nhận: <?=$orderInfor[0]['email']?> </td>
+                        </tr>
+                        <tr>
+                        <td>Điện thoại người nhận: <?=$orderInfor[0]['tel']?></td>
+                        </tr>
 
+                        <tr>
+                            <td>Phương thức thanh toán
+                            <?php
+                                switch ($orderInfor[0]['pttt']) {
+                                    case '1':
+                                        $txtMess="Thanh toán khi nhận hàng";
+                                        break;
+                                    case '2':
+                                        $txtMess="Thanh toán khi giao hàng";
+                                        break;
+                                    default:
+                                        $txtMess="Quý khách chưa chọn ...";
+                                        break;
+                                }
+                                echo $txtMess;
+                            ?></td>
+                        </tr>
+                    
+                    </table>
+                
+                    <?php
+                    }
+        }
+        ?>
     <?php
     } else {
         echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
