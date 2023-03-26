@@ -151,7 +151,7 @@
 
 
 
-
+<script src="/js/gioHang.js"></script>
 <!-- Jquery and Bootstrap Javascript -->
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>

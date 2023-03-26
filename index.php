@@ -6,7 +6,6 @@ include('./mainInclude/header.php');
 ?>
 <!-- End Including Header -->
 
-
 <!-- style.css not working!!! -->
 <style>
   .productContainer {

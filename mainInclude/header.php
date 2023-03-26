@@ -27,6 +27,10 @@
     <!-- Scripts  -->
     <title>Linh Kiện Điện Tử</title>
 
+    <!-- Chức năng giỏ hàng  -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/gioHang.js"></script>
+
 </head>
 <style>
 .nav-links {
@@ -185,8 +189,10 @@
                 </form> -->
                 <div style="margin-left: 910px;"></div>
                 <a href="timKiem.php" class="nav-btn" ><i class="fas fa-search"></i></a>
-                <!-- Giỏ hàng -->
-                <a href="giaoDienGioHang.php" class="nav-btn" ><i class="fas fa-shopping-cart"></i></a>
+                <!-- Giỏ hàng icon -->
+                <div>
+                    <a href="giaoDienGioHang.php" class="nav-btn" id="boxCart" ><i class="fas fa-shopping-cart"></i><span></span></a>
+                </div>
 
 
                 <a href="#" id="account-btn" class="nav-btn"><i class="fas fa-user" onclick="toggleMenu()"></i></a>                       

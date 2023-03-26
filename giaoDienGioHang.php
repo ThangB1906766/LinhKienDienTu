@@ -29,7 +29,7 @@ include('./mainInclude/header.php');
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="gioHang">
                 <?php
                 $tongTien = 0;
                 $i = 0;
@@ -42,15 +42,16 @@ include('./mainInclude/header.php');
                             <td><img src="' . $sanpham[2] . '" width="100"></td>
                             <td>' . $sanpham[1] . '</td>
                             <td>' . $sanpham[3] . '</td>
-                            <td>' . $sanpham[4] . '</td>
+                            <td>  <a onclick="Giam(this)"> << </a> <span>' . $sanpham[4] . '</span> <a onclick="Tang(this)"> >> </a>
+                            </td>
                             <td>' . $thanhTien . '</td>
-                            <td style="text-align:center"><a href="xoaGioHang.php?id=' . $i . '">Xóa</a></td>
+                            <td style="text-align:center"><a href="xoaGioHang.php?id=' . $i . '" class="xoaSanPham">Xóa</a></td>
                         </tr>
                     ';
                     $i++;
                 }
                 ?>
-                <tr>
+                <tr id="tongDonHang">
                     <td colspan="5">Tổng đơn hàng</td>
                     <td style="background-color: #CCC;"><?php echo $tongTien ?></td>
                     <td></td>
@@ -60,7 +61,6 @@ include('./mainInclude/header.php');
         </table>
         <p><a href="index.php">Tiếp tục đặt hàng?</a></p>
         <p><a href="xoaGioHang.php">Xóa giỏ hàng?</a></p>
-
 
     </div>
     <div class="col-3">
@@ -108,3 +108,4 @@ include('./mainInclude/header.php');
 include('./mainInclude/footer.php')
 ?>
 <!-- End Including Footer -->
+
