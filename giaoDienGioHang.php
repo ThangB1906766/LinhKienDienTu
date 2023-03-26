@@ -4,7 +4,9 @@ include('./dbconnection.php');
 include('./mainInclude/header.php');
 ?>
 
-
+<div class="container text-center">
+  <div class="row">
+    <div class="col-9">
     <?php
     // session_start(); 
     // ob_start();
@@ -60,7 +62,9 @@ include('./mainInclude/header.php');
         <p><a href="xoaGioHang.php">Xóa giỏ hàng?</a></p>
 
 
-    <h1 style="text-align: center;">Thông tin đặt hàng</h1>
+    </div>
+    <div class="col-3">
+    <h3 style="text-align: center;">Thông tin đặt hàng</h3>
     <form action="thanhtoan.php" method="POST">
         <input type="hidden" name="tongdonhang" value="<?=$tongTien?>">
         <table class="datHang">
@@ -93,6 +97,12 @@ include('./mainInclude/header.php');
         echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
     }
     ?>
+    </div>
+  </div>
+</div>
+
+
+   
 <!-- Start Including Footer -->
 <?php
 include('./mainInclude/footer.php')

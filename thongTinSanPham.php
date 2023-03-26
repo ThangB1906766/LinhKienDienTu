@@ -53,7 +53,7 @@
                                           <input type="number" name="sp_soLuong" max="100" min="1" size="3" value="1">
                                           
                                          
-                                          <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng" name="addtocart">
+                                          <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng" name="themGioHang">
                                           </span>
                                       </div>                        
                                   </div>

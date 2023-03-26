@@ -1,9 +1,9 @@
 <?php
-     SESSION_start();
-     ob_start();
+    include('./mainInclude/header.php');
+    //  SESSION_start();
+    //  ob_start();
      include('./donHang.php');
     //  include('./hoaDon.php');
-
      
      if((isset($_POST['thanhToan'])) && (isset($_POST['thanhToan']))){
         // Lấy dữ liệu khi lick thanh toán
@@ -31,6 +31,10 @@
      }
      
 ?>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-9">
     <?php
     // session_start(); 
     // ob_start();
@@ -38,6 +42,7 @@
     $getShowCart = getShowCart($idDonHang);
     if (isset($getShowCart) && (count($getShowCart) > 0)) {
             ?>
+             <h1 style="text-align: center;">Thông tin đặt hàng</h1>
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
@@ -85,17 +90,19 @@
                 echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
             }
     ?>    
-
-        <?php
+    </div>
+    <div class="col">
+    <?php
          if(isset($_SESSION['idDonHang']) && ($_SESSION['idDonHang'] > 0)){
             $orderInfor = getOderInfor($_SESSION['idDonHang']);
             if(count($orderInfor) > 0){
         ?>  
-                <h1 style="text-align: center;">Thông tin đặt hàng</h1>
-               
                     <table class="datHang">
                         <tr>
-                            <h2>Mã đơn hàng: <?=$orderInfor[0]['madh']?> </h2>
+                            <td><h1>Thông tin người đặt</h1></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Mã đơn hàng: <?=$orderInfor[0]['madh']?> </h4></td>
                         </tr>
                         <tr>
                             <td>Tên người nhận: <?=$orderInfor[0]['name']?> </td>
@@ -139,4 +146,12 @@
         echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
     }
     ?>
-<?php  ob_flush(); ?>
+    </div>
+  </div>
+ 
+</div>
+
+<?php  
+include('./mainInclude/footer.php');
+ob_flush(); 
+?>

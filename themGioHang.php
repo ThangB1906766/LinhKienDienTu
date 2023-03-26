@@ -11,7 +11,7 @@ include('./mainInclude/header.php');
     if(!isset($_SESSION['cart'])){ // Nếu chưa có giỏ hàng thì tạo
         $_SESSION['cart'] = array();
     }
-    if(isset($_POST['addtocart']) && ($_POST['addtocart'])){ // name="addtocart" in thongTinSanPham.php
+    if(isset($_POST['themGioHang']) && ($_POST['themGioHang'])){ // name="addtocart" in thongTinSanPham.php
         $sp_id = $_POST['sp_id'];
         $sp_ten = $_POST['sp_ten'];
         $sp_hinhAnh = $_POST['sp_hinhAnh'];
