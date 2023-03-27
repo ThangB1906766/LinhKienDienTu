@@ -33,7 +33,7 @@
                 if($result->num_rows > 0){ 
                   while($row = $result->fetch_assoc()){
                     echo ' 
-                    <form action="themGioHang.php" method="POST">
+                    <form action="themVaoGioHang.php" method="POST">
                     <div class="row">
                        
                                   <div class="col-md-4">
@@ -46,7 +46,7 @@
                                       <p class="card-text">Mô tả sản phẩm: '.$row['sp_moTa'].'</p>
                                   
                                       <input type="hidden" name="id" value='. $row["sp_gia"] .'> 
-                                  <div>
+                                      <div>
                                           <label id="text-des" for="cars">Số lượng: </label>
                                           <span style="position: relative;margin-left: 12px;">
 
@@ -101,13 +101,9 @@
             ?>
         </div>
 </div>
-           
-
-
-    
-    
+               
       
-     <?php 
+<?php 
   // Footer Include from mainInclude 
   include('./mainInclude/footer.php'); 
 ?>  

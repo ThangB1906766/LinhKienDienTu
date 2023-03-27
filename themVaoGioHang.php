@@ -1,4 +1,6 @@
-<!-- Start Including Header -->
+<!-- 
+    Lấy dữ liệu từ from bên thongTinSanPham.php 
+ -->
 <?php
 include('./dbconnection.php');
 include('./mainInclude/header.php');
@@ -7,11 +9,11 @@ include('./mainInclude/header.php');
 <?php
     SESSION_start();
     ob_start();
-
-    if(!isset($_SESSION['cart'])){ // Nếu chưa có giỏ hàng thì tạo
+    if(!isset($_SESSION['cart'])){ // Nếu chưa có giỏ hàng thì tạo (Mảng)
         $_SESSION['cart'] = array();
     }
-    if(isset($_POST['themGioHang']) && ($_POST['themGioHang'])){ // name="addtocart" in thongTinSanPham.php
+    
+    if((isset($_POST['themGioHang']) && ($_POST['themGioHang']))){ // input name="addtocart" in thongTinSanPham.php
         $sp_id = $_POST['sp_id'];
         $sp_ten = $_POST['sp_ten'];
         $sp_hinhAnh = $_POST['sp_hinhAnh'];
@@ -26,7 +28,7 @@ include('./mainInclude/header.php');
         // $soLuong = $_POST[soLuong];
         $i=0;
         $fg=0;
-        // Tìm và so sánh một sản phẩm trong giỏ hàng ( Kiểm tra có mới tìm)
+        // Tìm và so sánh một sản phẩm trong giỏ hàng, có rồi thì chỉ cập nhật số lượng (trùng id)
         if(isset($_SESSION['cart']) && (count($_SESSION['cart']) > 0) ){
             foreach ($_SESSION['cart'] as $sanpham) {
                 if($sanpham[0] == $sp_id){
@@ -43,14 +45,15 @@ include('./mainInclude/header.php');
 
         // Khi số lượng ban đầu không đổi => thêm mới sp vào giỏ hàng
         if($fg==0){
-            // Tạo mảng
+            // Tạo mảng con trước khi đưa vào giỏ hàng
             $sanpham = array($sp_id, $sp_ten, $sp_hinhAnh, $sp_gia, $soLuong);
             // Đưa mảng vừa tạo vào session
             array_push($_SESSION['cart'], $sanpham);
         }
         // Chuyển trang
-        header('location: giaoDienGioHang.php');     
-    }
+    } header('location: giaoDienGioHang.php');     
+
+
 ?>
 <!-- End Including Header -->
 

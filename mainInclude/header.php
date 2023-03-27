@@ -189,9 +189,10 @@
                 </form> -->
                 <div style="margin-left: 910px;"></div>
                 <a href="timKiem.php" class="nav-btn" ><i class="fas fa-search"></i></a>
+
                 <!-- Giỏ hàng icon -->
-                <div>
-                    <a href="giaoDienGioHang.php" class="nav-btn" id="boxCart" ><i class="fas fa-shopping-cart"></i><span></span></a>
+                <div class="coverBoxCart">
+                    <a href="giaoDienGioHang.php" class="nav-btn" id="boxCart" ><i class="fas fa-shopping-cart"></i><span id="SLGH"></span></a>
                 </div>
 
 

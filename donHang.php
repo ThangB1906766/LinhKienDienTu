@@ -5,7 +5,7 @@
         $sql = "INSERT INTO tbl_order (madh, tongdonhang, pttt, name, address, email, tel)
                 VALUE ('$maDonHang', '$tongDonHang', '$pttt', '$hoTen', '$diaChi', '$email', '$sdt')";
         $conn->exec($sql);
-        $last_id = $conn->lastInsertId();
+        $last_id = $conn->lastInsertId(); // Lấy id tự tạo ở table tbl_order trong csdl
         return $last_id;
 
      }

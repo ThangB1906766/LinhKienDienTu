@@ -1,4 +1,7 @@
-// HTML DOM
+    
+/* 
+
+    // HTML DOM
     function Tang(x){
         // Thay đổi số lượng trực tiếp với DOM HTML
         var cha = x.parentElement;
@@ -12,8 +15,6 @@
 
     }
 
-
-    
     function Giam(x){
         // Thay đổi số lượng trực tiếp với DOM HTML
         var cha = x.parentElement;
@@ -31,17 +32,16 @@
         
     }
 
+*/
+
     // JQuery
     $(document).ready(function () {
         // Hiểm thị số lượng sản phẩm trong giỏ hàng
-        var gioHang = $("#gioHang").children("tr");
-        var soLuongSanPham = gioHang.length - 1;
-        // alert(soLuongSanPham);
-        var boxCart = $("#boxCart").children("span").eq(0);
-        // alert(boxCart.length);
-        boxCart.text(soLuongSanPham);
+            tinhSoLuongSanPham();
+            tinhTongDonHang();
         
         // Xóa giỏ hàng class="xoaSanPham"
+        /*
         $(".xoaSanPham").click(function (e) { 
             e.preventDefault();
             
@@ -50,14 +50,78 @@
             var tenSanPham = tr.children("td").eq(2).text(); // Lấy tên sản phẩm để xóa csdl
             tr.remove();
             // alert(tenSanPham);
-        });
 
+            // Cập nhật lại số lượng
+            tinhSoLuongSanPham();
+            tinhTongDonHang();
+            // Tạo hiệu ứng animation
+            $(".coverBoxCart").addClass("cartAnimation");
+            setTimeout(function(){ $(".coverBoxCart").removeClass("cartAnimation");;}, 500); // Sau nữa giây sẽ xóa để tạo lại hiệu ứng khi xóa tiếp theo
+        });
+        */
         // Thay đổi số lượng khi xóa
         $(".soLuong").change(function (e) { 
             e.preventDefault();
             var soLuong = this.value;
-            alert(soLuong);
+            var tr = $(this).parent().parent();
+            var tenSanPham = tr.children("td").eq(2).text();
+            var donGia = tr.children("td").eq(3).text(); 
+            var thanhTien = donGia * soLuong;
+            tr.children("td").eq(5).text(thanhTien);
+            tinhTongDonHang();
+            // alert(soLuong);
         });
+
+        function tinhSoLuongSanPham() {
+            var gioHang = $("#gioHang").children("tr");
+            var soLuongSanPham = gioHang.length;
+            // alert(soLuongSanPham);
+            var boxCart = $("#boxCart").children("span").eq(0);
+            // alert(boxCart.length);
+            boxCart.text(soLuongSanPham);
+        }
+
+
+        function tinhTongDonHang() {
+            var tongDonHang = $("#tongDonHang").children("tr");
+            // Tính tổng đơn hàng
+            var gioHang = $("#gioHang").children("tr");
+            var tong = 0;
+            for (let i = 0; i < gioHang.length; i++) {
+                tong += eval(gioHang.eq(i).children("td").eq(5).text());
+            }
+            tongDonHang.children("td").eq(1).text(tong);
+        }
+
+        /*
+        // Cập nhật lại số lượng khi thay đổi trong giaoDienGioHang.php
+            $(".soLuong").change(function (e) { 
+                e.preventDefault();
+                var td = $(this).parent(); // Lấy "dt"
+                var sp_soLuong = td.children("input").val(); // Lấy <input> trong "tr"
+
+                var tr = $(this).parent().parent();
+                var sp_id = eval(tr.children("td").eq(0).text()) -1 ; // Lấy STT của món cần thay đổi SL trong giỏ hàng chuyển cho = id
+
+                // alert(sp_id);
+
+                $.post("/capNhatSLSP_TrongGioHang.php",{
+                        sp_soLuong: sp_soLuong,
+                        sp_id: sp_id
+                    },
+                    function (data) {
+
+                        // var soLuong = $("#gioHang").children("tr").children("input");
+                        var soLuong = $("#SLGH");
+                        soLuong.text(data);
+                       
+
+                    }
+                    
+                );
+            });
+            */
+       
 
     });
 

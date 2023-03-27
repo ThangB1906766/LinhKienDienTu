@@ -5,6 +5,7 @@
      include('./donHang.php');
     //  include('./hoaDon.php');
      
+    // Nếu click button Thanh toán
      if((isset($_POST['thanhToan'])) && (isset($_POST['thanhToan']))){
         // Lấy dữ liệu khi lick thanh toán
         $tongDonHang = $_POST['tongdonhang'];
@@ -25,7 +26,7 @@
                 addtocart($idDonHang, $sanpham[0], $sanpham[1], $sanpham[2], $sanpham[3], $sanpham[4]);
             }
             // Xóa giỏ hàng sau khi đặt
-            // unset($_SESSION['cart']);
+            unset($_SESSION['cart']);
         }
         
      }
@@ -36,8 +37,7 @@
   <div class="row">
     <div class="col-9">
     <?php
-    // session_start(); 
-    // ob_start();
+    // Hiển thị đơn hàng vừa thanh toán
     if(isset($_SESSION['idDonHang']) && ($_SESSION['idDonHang'] > 0)){
     $getShowCart = getShowCart($idDonHang);
     if (isset($getShowCart) && (count($getShowCart) > 0)) {
@@ -52,8 +52,6 @@
                             <th scope="col">Đơn giá</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Thành tiền</th>
-                            
-
                         </tr>
                     </thead>
                     <tbody>
@@ -86,13 +84,12 @@
 
                     </tbody>
     <?php
-            }else{
-                echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
             }
     ?>    
     </div>
     <div class="col">
     <?php
+        // Hiển thị thông tin người đặt
          if(isset($_SESSION['idDonHang']) && ($_SESSION['idDonHang'] > 0)){
             $orderInfor = getOderInfor($_SESSION['idDonHang']);
             if(count($orderInfor) > 0){
@@ -142,9 +139,7 @@
         }
         ?>
     <?php
-    } else {
-        echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
-    }
+        }
     ?>
     </div>
   </div>
