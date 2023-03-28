@@ -92,8 +92,7 @@
             }
             tongDonHang.children("td").eq(1).text(tong);
         }
-
-        /*
+        
         // Cập nhật lại số lượng khi thay đổi trong giaoDienGioHang.php
             $(".soLuong").change(function (e) { 
                 e.preventDefault();
@@ -120,7 +119,6 @@
                     
                 );
             });
-            */
        
 
     });
