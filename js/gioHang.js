@@ -72,14 +72,14 @@
             // alert(soLuong);
         });
 
-        function tinhSoLuongSanPham() {
-            var gioHang = $("#gioHang").children("tr");
-            var soLuongSanPham = gioHang.length;
-            // alert(soLuongSanPham);
-            var boxCart = $("#boxCart").children("span").eq(0);
-            // alert(boxCart.length);
-            boxCart.text(soLuongSanPham);
-        }
+        // function tinhSoLuongSanPham() {
+        //     var gioHang = $("#gioHang").children("tr");
+        //     var soLuongSanPham = gioHang.length;
+        //     // alert(soLuongSanPham);
+        //     var boxCart = $("#boxCart").children("span").eq(0);
+        //     // alert(boxCart.length);
+        //     boxCart.text(soLuongSanPham);
+        // }
 
 
         function tinhTongDonHang() {
@@ -100,6 +100,10 @@
                 var sp_soLuong = td.children("input").val(); // Lấy <input> trong "tr"
                 var tr = $(this).parent().parent();
                 var sp_ten = tr.children("td").eq(2).text(); // Lấy tên của món cần thay đổi SL trong giỏ hàng chuyển cho = id
+
+                // var sp_ten = tr.children("td").eq(0).text(); // Lấy STT để hiển thị số sản phẩm trong giỏ hàng
+
+
                 //  alert(sp_soLuong);
                 //  alert(sp_id);
                 $.post("/capNhatSLSP_TrongGioHang.php",{
