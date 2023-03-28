@@ -98,28 +98,19 @@
                 e.preventDefault();
                 var td = $(this).parent(); // Lấy "dt"
                 var sp_soLuong = td.children("input").val(); // Lấy <input> trong "tr"
-
                 var tr = $(this).parent().parent();
-                var sp_id = eval(tr.children("td").eq(0).text()) -1 ; // Lấy STT của món cần thay đổi SL trong giỏ hàng chuyển cho = id
-
-                // alert(sp_id);
-
+                var sp_ten = tr.children("td").eq(2).text(); // Lấy tên của món cần thay đổi SL trong giỏ hàng chuyển cho = id
+                //  alert(sp_soLuong);
+                //  alert(sp_id);
                 $.post("/capNhatSLSP_TrongGioHang.php",{
                         sp_soLuong: sp_soLuong,
-                        sp_id: sp_id
+                        sp_ten: sp_ten
                     },
-                    function (data) {
-
-                        // var soLuong = $("#gioHang").children("tr").children("input");
-                        var soLuong = $("#SLGH");
-                        soLuong.text(data);
-                       
+                    function (data) {                       
 
                     }
                     
                 );
             });
-       
-
     });
 
