@@ -72,14 +72,15 @@
             // alert(soLuong);
         });
 
-        // function tinhSoLuongSanPham() {
-        //     var gioHang = $("#gioHang").children("tr");
-        //     var soLuongSanPham = gioHang.length;
-        //     // alert(soLuongSanPham);
-        //     var boxCart = $("#boxCart").children("span").eq(0);
-        //     // alert(boxCart.length);
-        //     boxCart.text(soLuongSanPham);
-        // }
+        function tinhSoLuongSanPham() {
+            var gioHang = $("#gioHang").children("tr");
+            var soLuongSanPham = gioHang.length;
+            // alert(soLuongSanPham);
+            var boxCart = $("#boxCart").children("span").eq(0);
+            // alert(boxCart.length);
+            // Đóng dòng bên dưới lại để đếm số lượng sản phẩm trong giỏ hàng ở file header.php
+            // boxCart.text(soLuongSanPham);
+        }
 
 
         function tinhTongDonHang() {
@@ -93,25 +94,27 @@
             tongDonHang.children("td").eq(1).text(tong);
         }
         
-        // Cập nhật lại số lượng khi thay đổi trong giaoDienGioHang.php
+            // Cập nhật lại số lượng khi thay đổi trong giaoDienGioHang.php
             $(".soLuong").change(function (e) { 
                 e.preventDefault();
                 var td = $(this).parent(); // Lấy "dt"
                 var sp_soLuong = td.children("input").val(); // Lấy <input> trong "tr"
                 var tr = $(this).parent().parent();
+
                 var sp_ten = tr.children("td").eq(2).text(); // Lấy tên của món cần thay đổi SL trong giỏ hàng chuyển cho = id
 
                 // var sp_ten = tr.children("td").eq(0).text(); // Lấy STT để hiển thị số sản phẩm trong giỏ hàng
 
+                //   alert(sp_soLuong);
+                //   alert(sp_ten);
 
-                //  alert(sp_soLuong);
-                //  alert(sp_id);
                 $.post("/capNhatSLSP_TrongGioHang.php",{
                         sp_soLuong: sp_soLuong,
-                        sp_ten: sp_ten
+                        sp_ten: sp_ten,
                     },
                     function (data) {                       
-
+                        var iconGioHang = $("#slsp");
+                        iconGioHang.text(data);
                     }
                     
                 );

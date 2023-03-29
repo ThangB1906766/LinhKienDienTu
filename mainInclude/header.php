@@ -3,6 +3,7 @@
 <?php 
     ob_start();
     SESSION_start();
+    $soLuongSanPham=0;
 ?>
 <head>
     <meta charset="UTF-8">
@@ -192,10 +193,17 @@
 
                 <!-- Giỏ hàng icon -->
                 <?php
-                    if(isset($_SESSION['cart'])) $soLuongSanPham=sizeof($_SESSION['cart']);
+                   if(isset($_SESSION['cart'])){
+                        // Lấy tổng số lượng sản phẩm trong giỏ hàng hiện lên icon ở tất cả các trang
+                        $i=0;
+                        foreach ($_SESSION['cart'] as $sanpham) {
+                                $soLuongSanPham += $_SESSION['cart'][$i][4];
+                                $i++;
+                            } 
+                        }
                 ?>
                 <div class="coverBoxCart">
-                    <a href="giaoDienGioHang.php" class="nav-btn" id="boxCart" ><i class="fas fa-shopping-cart"></i><span></span><?=$soLuongSanPham?></a>
+                    <a href="giaoDienGioHang.php" class="nav-btn" id="boxCart" ><i class="fas fa-shopping-cart"></i><span id="slsp"><?=$soLuongSanPham?></span></a>
                 </div>
 
 
