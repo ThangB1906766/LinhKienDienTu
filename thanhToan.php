@@ -33,6 +33,7 @@
      
 ?>
 
+<!-- Giao diện thông tin sau khi thanh toán -->
 <div class="container text-center">
   <div class="row">
     <div class="col-9">

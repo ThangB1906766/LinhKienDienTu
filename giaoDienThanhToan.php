@@ -2,11 +2,29 @@
 <?php
 include('./dbconnection.php');
 include('./mainInclude/header.php');
+
+if (isset($_SESSION['is_login'])) {
+    $nm_email = $_SESSION['userLogEmail'];
+} else {
+    echo "<script> location.href='../index.php'; </script>";
+}
+
+$sql = "SELECT * FROM nguoimua WHERE nm_email='$nm_email'";
+$result = $conn->query($sql);
+if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    $nm_id = $row["nm_id"];
+    $nm_ten = $row["nm_ten"];
+    $nm_email = $row["nm_email"];
+    $nm_sdt = $row["nm_sdt"];
+   
+}
+
 ?>
 
 <div class="container text-center">
   <div class="row">
-    <div class="col-12">
+    <div class="col-9">
     <?php
     // session_start(); 
     // ob_start();
@@ -15,7 +33,7 @@ include('./mainInclude/header.php');
             // echo '<br> Có tiếp tục <a href="thongTinSanPham.php"> đặt hàng </a>';
         ?>
             <!-- End Including Header -->
-            <h1 style="text-align: center;">Giỏ Hàng</h1>
+            <h1 style="text-align: center;">Thông tin sản phẩm</h1>
             <table class="table">
                 <thead class="thead-light">
                     <tr>
@@ -25,8 +43,6 @@ include('./mainInclude/header.php');
                         <th scope="col">Đơn giá</th>
                         <th scope="col">Số lượng</th>
                         <th scope="col">Thành tiền</th>
-                        <th scope="col">Xóa</th>
-
                     </tr>
                 </thead>
                 <tbody id="gioHang">
@@ -43,10 +59,9 @@ include('./mainInclude/header.php');
                                 <td>' . $sanpham[1] . '</td>
                                 <td>' . $sanpham[3] . '</td>
                                 <td>
-                                    <input type="number" min="1" max="10" value="'. $sanpham[4] .'" class="soLuong">
+                                    '. $sanpham[4] .'
                                 </td>
                                 <td>' . $thanhTien . '</td>
-                                <td style="text-align:center"><a href="xoaRongGioHang.php?id=' . $i . '">Xóa</a></td>
                             </tr>
                         ';
                         $i++;
@@ -60,26 +75,44 @@ include('./mainInclude/header.php');
                             <td></td>
                     </tr>
                 </tbody>
-                <tbody>
-                    <tr>
-                        <td >
-                            <p ><a href="index.php">Tiếp tục đặt hàng?</a></p>
-                        </td>
-                        <td>
-                            <p><a href="xoaRongGioHang.php">Xóa rỗng giỏ hàng?</a></p> 
-                        </td>
-                        <td> <p><a href="giaoDienThanhToan.php">Tiến hành thanh toán</a></p> </td>
-                    </tr>
-                </tbody>
             </table>
+            <!-- <p><a href="index.php">Tiếp tục đặt hàng?</a></p>
+            <p><a href="xoaRongGioHang.php">Xóa rỗng giỏ hàng?</a></p>  -->
         </div>
-        
-
+        <div class="col-3">
+        <h4 style="text-align: center;">Thông tin nhận hàng</h4>
+        <form action="thanhtoan.php" method="POST">
+            <input type="hidden" name="tongdonhang" value="<?=$tongTien?>">
+            <table class="datHang">
+                <tr>
+                    <td><input type="text" name="hoten" placeholder="Nhập họ tên" value="<?=$nm_ten?>"></td>
+                </tr>
+                <tr>
+                <td><input type="text" name="diachi" placeholder="Nhập địa chỉ"></td>
+                </tr>
+                <tr>
+                <td><input type="text" name="email" placeholder="Nhập email" value="<?=$nm_email?>"></td>
+                </tr>
+                <tr>
+                <td><input type="text" name="sodienthoai" placeholder="Nhập số điện thoại" value="<?=$nm_sdt?>"></td>
+                </tr>
+                <tr>
+                    <td>Phương thức thanh toán <br>
+                        <input type="radio" name="pttt" value="1"> Thanh toán khi nhận hàng <br>
+                        <input type="radio" name="pttt" value="2"> Thanh toán khi giao hàng <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Đặt hàng" name="thanhToan"></td>
+                </tr>
+            </table>
+        </form>
         <?php
     } else {
         echo '<br> Giỏ hàng rỗng. Bạn muốn đặt hàng không <a href="index.php"> đặt hàng </a>';
     }
     ?>
+    </div>
   </div>
 </div>
 

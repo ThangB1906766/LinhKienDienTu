@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-    ob_start();
+    // ob_start();
     SESSION_start();
+    ob_start();
     $soLuongSanPham=0;
 ?>
 <head>
