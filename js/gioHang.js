@@ -108,7 +108,7 @@
                 //   alert(sp_soLuong);
                 //   alert(sp_ten);
 
-                $.post("/capNhatSLSP_TrongGioHang.php",{
+                $.post("/capNhatSLSPTrongGioHang.php",{
                         sp_soLuong: sp_soLuong,
                         sp_ten: sp_ten,
                     },

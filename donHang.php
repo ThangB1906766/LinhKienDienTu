@@ -1,4 +1,5 @@
 <?php
+   // Những function được tạo sử dụng trong thanhToan.php
     include('./connectdb.php');
      function taoDonHang($maDonHang, $tongDonHang, $pttt, $hoTen, $diaChi, $email, $sdt){
         $conn=connectdb();
