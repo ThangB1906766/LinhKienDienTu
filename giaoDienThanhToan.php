@@ -9,6 +9,7 @@ if (isset($_SESSION['is_login'])) {
     echo "<script> location.href='../index.php'; </script>";
 }
 
+// Lấy thông tin người dùng
 $sql = "SELECT * FROM nguoimua WHERE nm_email='$nm_email'";
 $result = $conn->query($sql);
 if ($result->num_rows == 1) {
@@ -16,10 +17,29 @@ if ($result->num_rows == 1) {
     $nm_id = $row["nm_id"];
     $nm_ten = $row["nm_ten"];
     $nm_email = $row["nm_email"];
-    $nm_sdt = $row["nm_sdt"];
+    // $nm_sdt = $row["nm_sdt"];
    
 }
+// Lấy địa chỉ
+// $sql_diaChi = "SELECT dc.dc_thanhpho as tentp, dc.dc_tinh as tentinh, dc.dc_xa as tenxa, dc.dc_sonha as sonha
+//                 FROM tbl_order od JOIN diachi dc 
+//                 ON od.email = dc.nm_email 
+//                 WHERE dc.nm_email = '$nm_email'";
 
+$sql_diaChi = "SELECT dc_sonha as sonha , dc_thanhpho as tentp, dc_tinh as tentinh, dc_xa as tenxa, dc_sdt as sdt
+               FROM diachi 
+               WHERE nm_email = '$nm_email'";
+$result = $conn->query($sql_diaChi);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $tentp = $row["tentp"];
+        $tentinh = $row["tentinh"];
+        $tenxa = $row["tenxa"];
+        $sonha = $row["sonha"];
+        $sdt = $row["sdt"];
+    }
+}
 ?>
 
 <div class="container text-center">
@@ -49,9 +69,11 @@ if ($result->num_rows == 1) {
                     <?php
                     $tongTien = 0;
                     $i = 0;
+                    $tongSoLuongSanPham = 0;
                     foreach ($_SESSION['cart'] as $sanpham) {
                         $thanhTien = $sanpham[3] * $sanpham[4];
                         $tongTien += $thanhTien;
+                        $tongSoLuongSanPham += $sanpham[4];
                         echo '
                             <tr>
                                 <td>' . ($i + 1) . '</td>
@@ -79,26 +101,31 @@ if ($result->num_rows == 1) {
             <!-- <p><a href="index.php">Tiếp tục đặt hàng?</a></p>
             <p><a href="xoaRongGioHang.php">Xóa rỗng giỏ hàng?</a></p>  -->
         </div>
-        <div class="col-3">
+        <div class="col-3   ">
         <h4 style="text-align: center;">Thông tin nhận hàng</h4>
         <form action="thanhtoan.php" method="POST">
             <input type="hidden" name="tongdonhang" value="<?=$tongTien?>">
-            <table class="datHang">
+            <input type="hidden" name="soLuongSanPham" value="<?=$tongSoLuongSanPham?>">
+            <table class="datHang" style="height: 300px; width: 100%;">
                 <tr>
                     <td><input type="text" name="hoten" placeholder="Nhập họ tên" value="<?=$nm_ten?>"></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="diachi" placeholder="Nhập địa chỉ"></td>
+                <td><input type="text" name="diachi" placeholder="Nhập địa chỉ" value="<?php echo "$sonha, ", "$tenxa, ", "$tentinh, ", "$tentp" ?>"></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="email" placeholder="Nhập email" value="<?=$nm_email?>"></td>
+                <td><input type="text" name="email" placeholder="Nhập email" value="<?=$nm_email?>" readonly></td>
                 </tr>
                 <tr>
-                <td><input type="text" name="sodienthoai" placeholder="Nhập số điện thoại" value="<?=$nm_sdt?>"></td>
+                <td><input type="text" name="sodienthoai" placeholder="Nhập số điện thoại" value="<?=$sdt?>"></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="text" name="ghichu" placeholder="Ghi chú" value=""></td>
                 </tr>
                 <tr>
                     <td>Phương thức thanh toán <br>
-                        <input type="radio" name="pttt" value="1"> Thanh toán khi nhận hàng <br>
+                        <input type="radio" name="pttt" value="1" checked> Thanh toán khi nhận hàng <br>
                         <input type="radio" name="pttt" value="2"> Thanh toán khi giao hàng <br>
                     </td>
                 </tr>
