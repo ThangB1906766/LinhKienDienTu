@@ -61,7 +61,7 @@
             $orderInfor = hienThiThongTinDatHang($_SESSION['idDonHang']);
             if(count($orderInfor) > 0){
         ?>  
-                    <table class="datHang container text-center">
+                    <table class="datHang container text-center" >
                         <tr>
                             <td><h1>Thông tin người đặt</h1></td>
                         </tr>
@@ -79,6 +79,9 @@
                         </tr>
                         <tr>
                         <td>Điện thoại người nhận: <?=$orderInfor[0]['sdt']?></td>
+                        </tr>
+                        <tr>
+                        <td>Ghi chú: <?=$orderInfor[0]['ghichu']?></td>
                         </tr>
 
                         <tr>

@@ -69,7 +69,7 @@
       $conn=connectdb();
       // $stmt = $conn->prepare("SELECT * FROM donhang WHERE dh_id = $idDonHang");
       $stmt = $conn->prepare("SELECT dc.dc_sonha as sonha, dc.dc_thanhpho as tentp, dc.dc_tinh as tentinh, dc.dc_xa as tenxa,
-                                    dc.dc_sdt as sdt, dc.dc_hoten as hoten, dc.nm_email as email, dh.dh_pttt as pttt
+                                    dc.dc_sdt as sdt, dc.dc_hoten as hoten, dc.nm_email as email, dh.dh_pttt as pttt, dh.dh_ghiChu as ghichu
                                FROM donhang dh JOIN diachi dc ON dh.nm_id = dc.nm_id
                                WHERE dh.dh_id = $idDonHang");
       $stmt->execute();

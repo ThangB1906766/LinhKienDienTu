@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 29, 2023 lúc 05:40 AM
+-- Thời gian đã tạo: Th4 04, 2023 lúc 04:21 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -11546,9 +11546,7 @@ CREATE TABLE `diachi` (
 --
 
 INSERT INTO `diachi` (`dc_id`, `dc_hoten`, `dc_sdt`, `dc_sonha`, `dc_thanhpho`, `dc_tinh`, `dc_xa`, `dc_giatrimatdinh`, `nm_id`, `nm_email`) VALUES
-(36, 'Lê Minh Thắng', 869859434, '230', 'Tỉnh Bắc Ninh', 'Huyện Quế Võ', 'Xã Mộ Đạo', 0, 0, ''),
-(37, 'Lê Minh Thắng', 0, '2', 'Tỉnh Vĩnh Phúc', 'Huyện Lập Thạch', 'Xã Triệu Đề', 0, 0, ''),
-(38, 'Tùng', 123, '111', 'Thành phố Cần Thơ', 'Quận Ô Môn', 'Phường Châu Văn Liêm', 0, 0, '');
+(39, 'Lê Minh Thắng', 869859434, '230', 'Thành phố Cần Thơ', 'Huyện Thới Lai', 'Xã Tân Thạnh', 0, 1, 'thang@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -11563,16 +11561,56 @@ CREATE TABLE `donhang` (
   `dh_tongThanhToan` int(11) NOT NULL,
   `dh_ngayDat` date NOT NULL,
   `dh_ghiChu` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `nm_id` int(11) NOT NULL
+  `nm_id` int(11) NOT NULL,
+  `dh_pttt` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`dh_id`, `tt_id`, `dh_soLuong`, `dh_tongThanhToan`, `dh_ngayDat`, `dh_ghiChu`, `nm_id`) VALUES
-(1, 4, 5, 50000, '2023-03-12', 'Đơn hàng đầu tiên', 8),
-(2, 5, 1, 444, '2023-03-12', 'Đơn hàng đầu tiênthứ 2', 13);
+INSERT INTO `donhang` (`dh_id`, `tt_id`, `dh_soLuong`, `dh_tongThanhToan`, `dh_ngayDat`, `dh_ghiChu`, `nm_id`, `dh_pttt`) VALUES
+(1, 4, 5, 50000, '2023-03-12', 'Đơn hàng đầu tiên', 8, 1),
+(2, 5, 1, 444, '2023-03-12', 'Đơn hàng đầu tiênthứ 2', 13, 1),
+(9, 1, 0, 190000, '2023-04-03', '', 1, 2),
+(16, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(17, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(18, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(19, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(20, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(21, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(22, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(23, 1, 2, 100000, '2023-04-04', 'Thuần cho de', 1, 1),
+(24, 1, 1, 50000, '2023-04-04', 'Thuần cho de', 1, 1),
+(25, 1, 1, 50000, '2023-04-04', 'Thuần cho de', 1, 1),
+(26, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(27, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(28, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(29, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(30, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(31, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(32, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(33, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(34, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(35, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(36, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(37, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(38, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(39, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(40, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(41, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(42, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(43, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(44, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(45, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(46, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(47, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(48, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(49, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(50, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(51, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(52, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1),
+(53, 1, 1, 140000, '2023-04-04', 'Thuần cho de', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -11582,11 +11620,53 @@ INSERT INTO `donhang` (`dh_id`, `tt_id`, `dh_soLuong`, `dh_tongThanhToan`, `dh_n
 
 CREATE TABLE `giohang` (
   `gh_id` int(11) NOT NULL,
-  `gh_tongTien` int(11) NOT NULL,
-  `gh_tongSoLuong` int(11) NOT NULL,
-  `nm_id` int(11) NOT NULL,
-  `sp_id` int(11) NOT NULL
+  `dh_id` int(11) NOT NULL,
+  `sp_id` int(11) NOT NULL,
+  `gh_soLuong` int(11) NOT NULL,
+  `gh_donGia` double(10,2) NOT NULL,
+  `gh_tenSanPham` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `gh_img` varchar(255) COLLATE utf8mb4_bin NOT NULL,
+  `nm_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Đang đổ dữ liệu cho bảng `giohang`
+--
+
+INSERT INTO `giohang` (`gh_id`, `dh_id`, `sp_id`, `gh_soLuong`, `gh_donGia`, `gh_tenSanPham`, `gh_img`, `nm_id`) VALUES
+(1, 19, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(2, 20, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(3, 22, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(4, 23, 36, 2, 50000.00, 'Nguồn Adapter 12V-5A 5.5*2.1mm', '../image/sanpham/sac2a.jpg', 1),
+(5, 24, 36, 1, 50000.00, 'Nguồn Adapter 12V-5A 5.5*2.1mm', '../image/sanpham/sac2a.jpg', 1),
+(6, 26, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(7, 27, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(8, 28, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(9, 29, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(10, 30, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(11, 31, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(12, 32, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(13, 33, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(14, 34, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(15, 35, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(16, 36, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(17, 37, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(18, 38, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(19, 39, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(20, 40, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(21, 41, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(22, 42, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(23, 43, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(24, 44, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(25, 45, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(26, 46, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(27, 47, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(28, 48, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(29, 49, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(30, 50, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(31, 51, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(32, 52, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1),
+(33, 53, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -11741,7 +11821,21 @@ CREATE TABLE `tbl_cart` (
 --
 
 INSERT INTO `tbl_cart` (`id`, `id_order`, `id_sanPham`, `soLuong`, `donGia`, `tenSanPham`, `img`) VALUES
-(188, 169, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg');
+(188, 169, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(189, 7, 37, 2, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(190, 8, 2, 1, 100000.00, 'Đồng hồ vạn năng DT830B', '../image/sanpham/dt830b.jpg'),
+(191, 9, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(192, 9, 36, 1, 50000.00, 'Nguồn Adapter 12V-5A 5.5*2.1mm', '../image/sanpham/sac2a.jpg'),
+(193, 11, 37, 6, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(194, 12, 37, 3, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(195, 13, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(196, 13, 36, 1, 50000.00, 'Nguồn Adapter 12V-5A 5.5*2.1mm', '../image/sanpham/sac2a.jpg'),
+(197, 14, 4, 2, 300000.00, 'Đồng hồ vạn năng ZOYI ZT-S4', '../image/sanpham/zts4.jpg'),
+(198, 14, 3, 2, 600000.00, 'Đồng hồ vạn năng Prokit MT-2017N', '../image/sanpham/mt2017n.jpg'),
+(199, 15, 37, 3, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(200, 15, 36, 3, 50000.00, 'Nguồn Adapter 12V-5A 5.5*2.1mm', '../image/sanpham/sac2a.jpg'),
+(201, 16, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg'),
+(202, 17, 37, 1, 140000.00, 'Biến Áp Đổi Nguồn 220V về 110V-100V 5a     ', '../image/sanpham/ba5a.jpg');
 
 -- --------------------------------------------------------
 
@@ -11852,7 +11946,8 @@ ALTER TABLE `donhang`
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`gh_id`),
   ADD KEY `nm_id` (`nm_id`),
-  ADD KEY `sp_id` (`sp_id`);
+  ADD KEY `sp_id` (`sp_id`),
+  ADD KEY `giohang_ibfk_3` (`dh_id`);
 
 --
 -- Chỉ mục cho bảng `hoadon`
@@ -11913,19 +12008,19 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `diachi`
 --
 ALTER TABLE `diachi`
-  MODIFY `dc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `dc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `dh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `dh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT cho bảng `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `gh_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gh_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `hoadon`
@@ -11955,7 +12050,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
@@ -11999,7 +12094,8 @@ ALTER TABLE `donhang`
 --
 ALTER TABLE `giohang`
   ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`nm_id`) REFERENCES `nguoimua` (`nm_id`),
-  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`sp_id`) REFERENCES `sanpham` (`sp_id`);
+  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`sp_id`) REFERENCES `sanpham` (`sp_id`),
+  ADD CONSTRAINT `giohang_ibfk_3` FOREIGN KEY (`dh_id`) REFERENCES `donhang` (`dh_id`);
 
 --
 -- Các ràng buộc cho bảng `hoadon`
